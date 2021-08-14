@@ -13,25 +13,52 @@ int main() {
 	imshow("test", img);
 	waitKey(0);
 	*/
+
+	/*
 	//声明指定类型Mat类
 	//3X3的double类型矩阵
-	cv::Mat a = Mat_<double>(3, 3);
+	Mat a = Mat_<double>(3, 3);
 	//通过opencv数据类型创建Mat类 
 	//114X514的32位(32)浮点整数(F)3通道(C3)矩阵
-	cv::Mat b(114, 514, CV_32FC3);
+	Mat b(114, 514, CV_32FC3);
 	
 	//Mat类默认构造函数 赋值的时候会自己判断类型和大小
-	cv::Mat::Mat();
+	Mat::Mat();
 
 	//加些东西
 	//尺寸和类型参数
-	cv::Mat::Mat(3, 3, CV_8UC2);
+	Mat::Mat(3, 3, CV_8UC2);
 	//Size()结构
-	cv::Mat c(Size(3, 3), CV_16UC3);
+	Mat c(Size(3, 3), CV_16UC3);
 	//利用已有矩阵 储存内容相同 但是只是复制了矩阵头，所以矩阵指针指向同一个地址
-	cv::Mat::Mat(a);
-	cv::Mat p(a);
-	//构造已有类的子类
+	Mat::Mat(a);
+	Mat p(a);
+	//构造已有类的子类 Range表示范围，一个为行数范围，一个是列数范围，列数范围可以不写，默认截取全部列
+	Mat n(b, Range(10, 10), Range(12,12));
+	*/
 
+	//Mat类赋值
+	//在构造时赋值 Scalar()
+	Mat d(2, 2, CV_8UC3, Scalar(0, 0, 255));
+	//循环
+	Mat a = Mat_<int>(3, 3);
+	for (int i = 0; i < a.rows; i++) {
+		for (int j = 0; j < a.cols; j++) {
+			a.at<int>(i, j) = i + j;
+		}
+	}
+	//类方法
+	//eye() 创建一个单位矩阵 行数，列数，数据类型
+	Mat b = cv::Mat::eye(3, 3, CV_8UC3);
+	//diag() 构建对角矩阵 参数是Mat一维变量
+	Mat c = Mat::diag(b);
+	//ones 构建一个全为1的矩阵
+	Mat e = Mat::ones(12, 12, CV_16UC2);
+	//zeros 构建一个全为0的矩阵
+	Mat f = Mat::zeros(114, 514, CV_16FC1);
+	//利用数组
+	float g[8] = { 1,1,4,5,1,4,1,9 };
+	Mat h = Mat(2, 2, CV_32FC2, g);
+	Mat k = Mat(2, 4, CV_32FC1, g);
 	return 0;
 } 
