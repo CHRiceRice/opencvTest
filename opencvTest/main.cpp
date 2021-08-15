@@ -37,28 +37,44 @@ int main() {
 	Mat n(b, Range(10, 10), Range(12,12));
 	*/
 
+	/*
 	//Mat类赋值
-	//在构造时赋值 Scalar()
+	//在构造时赋值 Scalar()  
 	Mat d(2, 2, CV_8UC3, Scalar(0, 0, 255));
 	//循环
-	Mat a = Mat_<int>(3, 3);
+	Mat a = Mat_<int>(3, 3);0
 	for (int i = 0; i < a.rows; i++) {
 		for (int j = 0; j < a.cols; j++) {
 			a.at<int>(i, j) = i + j;
 		}
 	}
+
 	//类方法
 	//eye() 创建一个单位矩阵 行数，列数，数据类型
 	Mat b = cv::Mat::eye(3, 3, CV_8UC3);
 	//diag() 构建对角矩阵 参数是Mat一维变量
 	Mat c = Mat::diag(b);
 	//ones 构建一个全为1的矩阵
-	Mat e = Mat::ones(12, 12, CV_16UC2);
-	//zeros 构建一个全为0的矩阵
+	Mat e = Mat::ones(12, 12, CV_16UC2); 
+	//zeros 构建一个全为0的矩阵 
 	Mat f = Mat::zeros(114, 514, CV_16FC1);
 	//利用数组
 	float g[8] = { 1,1,4,5,1,4,1,9 };
 	Mat h = Mat(2, 2, CV_32FC2, g);
 	Mat k = Mat(2, 4, CV_32FC1, g);
+	*/
+	
+	//Mat类的运算
+	Mat a = (Mat_<int>(3, 3) << 1, 1, 3, 5, 1, 3, 1, 3);
+	Mat b = (Mat_<double>(3, 3) << 1, 1, 3, 9, 1, 3, 8, 3);
+	Mat f = (Mat_<double>(3, 3) << 1, 2.4, 3, 9.4, 1, 3, 8.5, 3);
+	Mat c, d;
+	double e;
+	//直接用* 运算数学乘积 即矩阵乘法
+	c = b * f;
+	//dot()求两个矩阵的内积，结果存在一个变量
+	e = b.dot(f);
+	//mul()求矩阵对应位的乘积
+	d = b.mul(f);
 	return 0;
 } 
